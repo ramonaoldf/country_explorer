@@ -38,39 +38,45 @@ class DetailScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Image.network(country.flagUrl,
+                      key: const Key('flag_image'),
                       height: 100,
-                      errorBuilder: (_, __, ___) => const Icon(Icons.error)),
+                      errorBuilder: (_, __, ___) =>
+                          const Icon(Icons.error, key: Key('flag_error_icon'))),
                 ),
                 const SizedBox(height: 16),
                 RichText(
+                    key: const Key('capital_name'),
                     text: TextSpan(
-                  style: Theme.of(context).textTheme.titleLarge,
-                  children: [
-                    TextSpan(
-                      text: 'Capital: ',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    TextSpan(
-                      text: country.capital,
-                    ),
-                  ],
-                )),
+                      style: Theme.of(context).textTheme.titleLarge,
+                      children: [
+                        TextSpan(
+                          text: 'Capital: ',
+                          style:
+                              Theme.of(context).textTheme.titleLarge!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                        TextSpan(
+                          text: country.capital,
+                        ),
+                      ],
+                    )),
                 const SizedBox(height: 8),
                 RichText(
+                    key: const Key('languages'),
                     text: TextSpan(
-                  style: Theme.of(context).textTheme.titleMedium,
-                  children: [
-                    TextSpan(
-                      text: 'Languages: ',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    TextSpan(text: country.languages.values.join(', ')),
-                  ],
-                )),
+                      style: Theme.of(context).textTheme.titleMedium,
+                      children: [
+                        TextSpan(
+                          text: 'Languages: ',
+                          style:
+                              Theme.of(context).textTheme.titleLarge!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                        TextSpan(text: country.languages.values.join(', ')),
+                      ],
+                    )),
               ],
             ),
           ),

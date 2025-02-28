@@ -11,23 +11,24 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('African Countries')),
-      body: RefreshIndicator(
-        onRefresh: () async =>
-            context.read<CountryListBloc>().add(const CountryListEvent.fetch()),
-        child: BlocBuilder<CountryListBloc, CountryListState>(
-          builder: (context, state) => state.when(
-            initial: () => const Center(child: CircularProgressIndicator()),
-            loading: () => const Center(child: CircularProgressIndicator()),
-            loaded: (countries) => ListView.builder(
-              itemCount: countries.length,
-              itemBuilder: (context, index) => CountryCard(
-                country: countries[index],
-                onTap: () => Navigator.push(
-                    context, DetailScreen.getRoute(countries[index].name)),
-              ),
+      body: BlocBuilder<CountryListBloc, CountryListState>(
+        builder: (context, state) => state.when(
+          initial: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          loaded: (countries) => ListView.builder(
+            itemCount: countries.length,
+            itemBuilder: (context, index) => CountryCard(
+              country: countries[index],
+              onTap: () {
+                context
+                    .read<CountryDetailBloc>()
+                    .add(CountryDetailEvent.fetch(countries[index].name));
+                Navigator.push(
+                    context, DetailScreen.getRoute(countries[index].name));
+              },
             ),
-            error: (message) => ErrorDisplay(message: message),
           ),
+          error: (message) => ErrorDisplay(message: message),
         ),
       ),
     );

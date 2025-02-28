@@ -11,18 +11,22 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repository = CountryRepository();
-    return RepositoryProvider(
-      create: (context) => repository,
-      child: MaterialApp(
-        theme: ThemeData.light(useMaterial3: true).copyWith(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (_) => CountryListBloc(repository)
+              ..add(const CountryListEvent.fetch())),
+        BlocProvider(create: (_) => CountryDetailBloc(repository)),
+      ],
+      child: RepositoryProvider(
+        create: (context) => repository,
+        child: MaterialApp(
+          theme: ThemeData.light(useMaterial3: true).copyWith(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          ),
+          home: const HomeScreen(),
+          debugShowCheckedModeBanner: false,
         ),
-        home: BlocProvider(
-          create: (context) =>
-              CountryListBloc(repository)..add(const CountryListEvent.fetch()),
-          child: const HomeScreen(),
-        ),
-        debugShowCheckedModeBanner: false,
       ),
     );
   }
