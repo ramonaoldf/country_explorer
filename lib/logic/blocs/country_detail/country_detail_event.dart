@@ -1,6 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'country_detail_event.freezed.dart';
+part of 'country_detail_bloc.dart';
 
 @freezed
 class CountryDetailEvent with _$CountryDetailEvent {

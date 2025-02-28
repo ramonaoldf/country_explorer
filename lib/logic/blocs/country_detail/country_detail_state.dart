@@ -1,7 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../data/models/country.dart';
-
-part 'country_detail_state.freezed.dart';
+part of 'country_detail_bloc.dart';
 
 @freezed
 class CountryDetailState with _$CountryDetailState {

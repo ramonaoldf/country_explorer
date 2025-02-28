@@ -148,7 +148,7 @@ void main() {
 
         // Assert
         expect(result, equals(expectedCountry));
-        verify(() => mockDio.get(any())).called(1);
+        verify(() => mockDio.get('$baseUrl/name/Ghana')).called(1);
       });
 
       test('handles missing capital in details gracefully', () async {

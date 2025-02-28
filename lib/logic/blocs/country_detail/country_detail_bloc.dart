@@ -1,7 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/data.dart';
-import 'country_detail_event.dart';
-import 'country_detail_state.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'country_detail_event.dart';
+part 'country_detail_state.dart';
+
+part 'country_detail_bloc.freezed.dart';
 
 class CountryDetailBloc extends Bloc<CountryDetailEvent, CountryDetailState> {
   final CountryRepository repository;

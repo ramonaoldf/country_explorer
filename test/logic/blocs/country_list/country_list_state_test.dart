@@ -1,4 +1,3 @@
-// Test cases of the CountryListState
 import 'package:country_explorer/logic/logic.dart';
 import 'package:flutter_test/flutter_test.dart';
 
