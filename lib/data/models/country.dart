@@ -3,7 +3,7 @@ part 'country.g.dart';
 part 'country.freezed.dart';
 
 @freezed
-abstract class Country with _$Country {
+class Country with _$Country {
   const factory Country({
     required String name,
     required String capital,

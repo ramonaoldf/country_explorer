@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../logic/blocs/blocs.dart';
 import '../widgets/widgets.dart';
+import 'screens.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,8 +20,11 @@ class HomeScreen extends StatelessWidget {
             loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (countries) => ListView.builder(
               itemCount: countries.length,
-              itemBuilder: (context, index) =>
-                  CountryCard(country: countries[index], onTap: () {}),
+              itemBuilder: (context, index) => CountryCard(
+                country: countries[index],
+                onTap: () => Navigator.push(
+                    context, DetailScreen.getRoute(countries[index].name)),
+              ),
             ),
             error: (message) => ErrorDisplay(message: message),
           ),

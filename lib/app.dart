@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'data/repositories/country_repository.dart';
-import 'logic/blocs/country_list/country_list_bloc.dart';
+import 'logic/logic.dart';
 import 'presentation/screens/home_screens.dart';
 
 class App extends StatelessWidget {
@@ -10,17 +11,17 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repository = CountryRepository();
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-            create: (_) => CountryListBloc(repository)
-              ..add(const CountryListEvent.fetch())),
-      ],
+    return RepositoryProvider(
+      create: (context) => repository,
       child: MaterialApp(
         theme: ThemeData.light(useMaterial3: true).copyWith(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-        home: const HomeScreen(),
+        home: BlocProvider(
+          create: (context) =>
+              CountryListBloc(repository)..add(const CountryListEvent.fetch()),
+          child: const HomeScreen(),
+        ),
         debugShowCheckedModeBanner: false,
       ),
     );

@@ -28,7 +28,7 @@ class CountryRepository {
 
   Future<Country> fetchCountryDetails(String name) async {
     try {
-      final response = await dio.get('$_baseUrl/v3.1/name/$name');
+      final response = await dio.get('$_baseUrl/name/$name');
       final json = response.data[0];
       return Country(
         name: json['name']['common'],
