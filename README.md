@@ -94,7 +94,7 @@ Full list in `pubspec.yaml`.
 ### Installation
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/thealphamerc/country_explorer.git
+   git clone https://github.com/ramonaoldf/country_explorer.git
    cd country_explorer
    ```
 
